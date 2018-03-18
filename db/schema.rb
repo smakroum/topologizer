@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311160511) do
+ActiveRecord::Schema.define(version: 20180317171322) do
 
   create_table "links", force: :cascade do |t|
     t.integer "source_id"
     t.integer "target_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["source_id", "target_id"], name: "index_links_on_source_id_and_target_id", unique: true
   end
 
   create_table "nodes", force: :cascade do |t|
