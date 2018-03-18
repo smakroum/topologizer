@@ -15,7 +15,7 @@ class NodesController < ApplicationController
   end
 
   def show_links
-    render :json => @node.links
+    render :json => @node.links.to_json(include: [:source_node, :target_node])
   end
 
   private
