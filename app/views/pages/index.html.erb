@@ -1,7 +1,7 @@
 <h1>Topology</h1>
 
 <p id="error"><%= flash[:error] %></p>
-<%= form_tag(pages_parse_gml_path, method: "POST", multipart: true) do %>
+<%= form_tag(pages_parse_json_path, method: "POST", multipart: true) do %>
   <%= file_field_tag 'gml' %>
   <%= submit_tag("Parse GML") %>
 <% end %>
