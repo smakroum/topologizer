@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'pages/index'
   post 'pages/parse_file'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'pages#index'
+  root 'static_pages#home'
   defaults format: :json do
     constraints( id: /\d+/) do
       get 'topologies/current', to: 'topologies#current'
