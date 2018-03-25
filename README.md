@@ -1,2 +1,2 @@
-# topologizer-api
+# topologizer
 Projet de fin d'étude
