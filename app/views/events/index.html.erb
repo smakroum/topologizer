@@ -33,4 +33,12 @@
 <%= link_to 'New Event', new_event_path %>
 <%= link_to 'Show Calendar', "/calendar/index"%>
 
+<br>
+
+<select name="post[topology_id]">
+    <% Topology.all.each do |topology| %>
+        <option value="<%= topology.id %>"><%= topology.id %> <%= topology.name %></option>
+    <% end %>
+</select>
+
 

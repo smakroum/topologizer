@@ -31,6 +31,15 @@
     <%= form.datetime_select :end_time, id: :event_end_time %>
   </div>
 
+  <div class="field">
+    <label>Select topology</label>
+    <select name="post[topology_id]">
+      <% Topology.all.each do |topology| %>
+          <option value="<%= topology.id %>"><%= topology.id %></option>
+      <% end %>
+    </select>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

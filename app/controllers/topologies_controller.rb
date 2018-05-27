@@ -1,4 +1,5 @@
 class TopologiesController < ApplicationController
+
   def index
     @topologies = Topology.all
     render json: @topologies

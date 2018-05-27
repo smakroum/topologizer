@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513094032) do
+ActiveRecord::Schema.define(version: 20180522131116) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180513094032) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "topology_id"
+    t.index ["topology_id"], name: "index_events_on_topology_id"
   end
 
   create_table "links", force: :cascade do |t|
