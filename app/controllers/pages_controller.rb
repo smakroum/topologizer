@@ -56,7 +56,7 @@ class PagesController < ApplicationController
 				parse_file_graphml(file_data)
 			end
 		rescue
-			redirect_to pages_index_path, :flash => { :error => "Parse Error" }
+			redirect_to pages_index_path, :flash => { :error => "Parse Error" } and return
 		end
 		redirect_to pages_index_path, :flash => { :success => "Parse ok" }
 	end
