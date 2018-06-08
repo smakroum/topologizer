@@ -32,12 +32,7 @@
   </div>
 
   <div class="field">
-    <label>Select topology</label>
-    <select name="post[topology_id]">
-      <% Topology.all.each do |topology| %>
-          <option value="<%= topology.id %>"><%= topology.id %></option>
-      <% end %>
-    </select>
+    <%= collection_select(:event, :topology_id, Topology.all, :id, :name) %>
   </div>
 
   <div class="actions">
