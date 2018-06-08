@@ -17,5 +17,6 @@ module TopologizerApi
 
     config.generators.assets = false
     config.generators.helper = false
+    config.web_console.whiny_requests = false
   end
 end
