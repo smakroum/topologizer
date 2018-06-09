@@ -61,5 +61,5 @@ gem 'fullcalendar-rails'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'simple_form'
-
+gem 'rest-client'
 

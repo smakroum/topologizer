@@ -18,5 +18,6 @@ module TopologizerApi
     config.generators.assets = false
     config.generators.helper = false
     config.web_console.whiny_requests = false
+    config.time_zone = "Paris"
   end
 end

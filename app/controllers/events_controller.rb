@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -30,6 +32,7 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
+        send_event_to_api
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -61,6 +64,7 @@ class EventsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -71,4 +75,42 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :description, :start_time, :end_time, :topology_id)
     end
+
+    def send_event_to_api
+      base_url = 'http://0.0.0.0:3001'
+
+      response = RestClient.post "#{base_url}/topologies", { name: @event.topology.name }
+      topology_api = JSON.parse(response)
+      @event.topology.update api_id: topology_api["id"]
+
+      @event.topology.nodes.each do |node|
+        response = RestClient.post "#{base_url}/topologies/#{topology_api["id"]}/nodes", {
+            name: node.name,
+        }
+        node_api = JSON.parse(response)
+        node.update api_id: node_api["id"]
+      end
+
+      @event.topology.links.each do |link|
+        response = RestClient.post "#{base_url}/topologies/#{topology_api["id"]}/links", {
+            source_id: link.source_node.api_id,
+            target_id: link.target_node.api_id
+        }
+        link_api = JSON.parse(response)
+        link.update api_id: link_api["id"]
+      end
+
+      response = RestClient.post "#{base_url}/tasks", {
+          name: @event.title,
+          start: @event.start_time,
+          end: @event.end_time,
+          topology_id: topology_api["id"]
+      }
+      event_api = JSON.parse(response)
+      @event.update api_id: event_api["id"]
+
+      puts "schedule"
+      RestClient.get "#{base_url}/tasks/#{event_api["id"]}/schedule"
+    end
+
 end

@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 		data_edges.each do |edge|
 			source = nodes.find {|n| n.name == edge['source'].to_s}
 			target = nodes.find {|n| n.name == edge['target'].to_s}
-			edges << {source_node: source, target_node: target}
+			edges << {source_node: source, target_node: target, topology: new_topology}
 		end
 		Link.create(edges)
 	end
@@ -39,7 +39,7 @@ class PagesController < ApplicationController
 			source = nodes.find {|n| n.name == edge['source']}
 			puts source.inspect
 			target = nodes.find {|n| n.name == edge['target']}
-			edges << {source_node: source, target_node: target}
+			edges << {source_node: source, target_node: target, topology: new_topology}
 		end
 		Link.create(edges)
 	end

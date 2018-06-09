@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522131116) do
+ActiveRecord::Schema.define(version: 20180608040153) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180522131116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "topology_id"
+    t.integer "api_id"
     t.index ["topology_id"], name: "index_events_on_topology_id"
   end
 
@@ -28,7 +29,10 @@ ActiveRecord::Schema.define(version: 20180522131116) do
     t.integer "target_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "topology_id"
+    t.integer "api_id"
     t.index ["source_id", "target_id"], name: "index_links_on_source_id_and_target_id", unique: true
+    t.index ["topology_id"], name: "index_links_on_topology_id"
   end
 
   create_table "nodes", force: :cascade do |t|
@@ -36,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180522131116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "topology_id"
+    t.integer "api_id"
   end
 
   create_table "topologies", force: :cascade do |t|
@@ -43,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180522131116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_current", default: false, null: false
+    t.integer "api_id"
   end
 
   create_table "users", force: :cascade do |t|
