@@ -1,41 +1,48 @@
-<%= form_with(model: event, local: true) do |form| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="modal-header">
+	<h4 class="modal-title" id="myModalLabel">New Event</h4>
 
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<button type="button" class="close" data-dismiss="modal">x</button>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title %>
-  </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description %>
-  </div>
+</div>
+<div class="modal-body">
+	<%= bootstrap_form_with(model: event, local: true) do |form| %>
+	<% if event.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time, id: :event_start_time %>
-  </div>
+		<ul>
+			<% event.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
 
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.datetime_select :end_time, id: :event_end_time %>
-  </div>
+	<div class="field">
+		<%= form.text_field :title, id: :event_title %>
+	</div>
 
-  <div class="field">
-    <%= collection_select(:event, :topology_id, Topology.all, :id, :name) %>
-  </div>
+	<div class="field">
+		<%= form.text_area :description, id: :event_description %>
+	</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+	<div class="field">
+		<%= form.datetime_select :start_time, id: :event_start_time %>
+	</div>
+
+	<div class="field">
+		<%= form.datetime_select :end_time, id: :event_end_time %>
+	</div>
+
+	<div class="field">
+		<label for="exampleSelect1">Example select</label>
+		<%= collection_select(:event, :topology_id, Topology.all, :id, :name, {class: "select" })  %>
+	</div>
+
+	<div class="actions">
+		<%= form.submit :Submit, class: 'btn btn-success'  %>
+	</div>
+	<% end %>
+</div>
+

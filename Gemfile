@@ -61,5 +61,16 @@ gem 'fullcalendar-rails'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'simple_form'
+gem 'bootstrap'
+gem "bootstrap_form", ">= 4.0.0.alpha1"
+gem 'bootstrap-sass', '3.3.7'
+gem 'autoprefixer-rails', '>= 5.2.1'
+gem 'sass', '>= 3.3.4'
+
+
+#Calendar, modal
+gem 'responders', '~> 2.0'
+gem 'popper_js'
+
 
 
