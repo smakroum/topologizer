@@ -9,6 +9,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+	    $('#calendar').html();
 		$('#calendar').fullCalendar({ events: '/events.json'});
 
 		$('.fc-future, .fc-today').on('click', function(){
