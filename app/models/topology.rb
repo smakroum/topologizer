@@ -1,5 +1,6 @@
 class Topology < ApplicationRecord
   has_many :nodes
+  has_many :links
 
   def save
     if self.is_current?

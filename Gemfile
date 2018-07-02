@@ -53,4 +53,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#add feature users
 gem 'devise'
+
+#Calendar
+gem 'fullcalendar-rails'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'simple_form'
+gem 'rest-client'
+gem 'bootstrap'
+gem "bootstrap_form", ">= 4.0.0.alpha1"
+gem 'bootstrap-sass', '3.3.7'
+gem 'autoprefixer-rails', '>= 5.2.1'
+gem 'sass', '>= 3.3.4'
+
+
+#Calendar, modal
+gem 'responders', '~> 2.0'
+gem 'popper_js'
