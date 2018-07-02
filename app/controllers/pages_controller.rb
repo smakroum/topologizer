@@ -61,4 +61,16 @@ class PagesController < ApplicationController
 		redirect_to pages_index_path, :flash => { :success => "Parse ok" }
 	end
 
+	def graph_data
+		data = {}
+		begin
+			@topology = Topology.find(params[:id])
+			data['nodes'] = @topology.nodes.collect {|n| { id: n.id, label: n.name } }
+			data['edges'] = @topology.links.collect {|l| { id: l.id, from: l.source_node.id, to: l.target_node.id } }
+		rescue
+			# ignored
+		end
+		render json: data
+	end
+
 end

@@ -10,7 +10,7 @@ var exportButton;
         exportArea = document.getElementById('input_output');
         importButton = document.getElementById('import_button');
         exportButton = document.getElementById('export_button');
-			draw();
+			// draw();
     }
 
     function addConnections(elem, index) {
@@ -28,11 +28,24 @@ var exportButton;
     }
 
     function draw() {
-        // create a network of nodes
-    	var data = getScaleFreeNetwork(10);
-		network = new vis.Network(container, data, {manipulation:{enabled:true}});
-		clearOutputArea();
+        // // create a network of nodes
+        // var data = getData();
+        // console.log(data);
+        // network = new vis.Network(container, data, {manipulation:{enabled:true}});
+        // clearOutputArea();
     }
+
+    $(document).ready(function(){
+        $('#topology-select').on('change', function(){
+            var $this = $(this);
+            var topology_id = $this.val();
+            $.get("pages/graph/data/"+ topology_id, function (data) {
+                network = new vis.Network(container, data, {manipulation:{enabled:true}});
+                clearOutputArea();
+            }, 'json')
+        });
+    });
+
             function exportNetwork() {
                 clearOutputArea();
 
@@ -121,7 +134,7 @@ var exportButton;
            // }
            
 
-        function getScaleFreeNetwork(nodeCount) {
+function getScaleFreeNetwork(nodeCount) {
   var nodes = [];
   var edges = [];
   var connectionCount = [];
